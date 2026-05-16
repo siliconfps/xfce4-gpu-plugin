@@ -1,0 +1,10 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+Name=GPU Monitor
+Comment=Monitor GPU usage, VRAM, clock speeds and temperature
+Icon=video-display
+X-XFCE-Module=xfce4-gpu-plugin
+X-XFCE-Unique=TRUE
+X-XFCE-Internal=FALSE
+X-XFCE-API=2.0
