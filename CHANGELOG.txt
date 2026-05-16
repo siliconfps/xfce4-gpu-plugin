@@ -1,0 +1,48 @@
+CHANGELOG — XFCE4 GPU & CPU Monitor Plugins
+
+============================================================
+[CPU Plugin] — 2026-05-15
+------------------------------------------------------------
+- Adicionada exibição de frequência (clock) no tooltip
+  Fonte: /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+  Exibição: "Clock: 3.6 GHz"
+- Campos adicionados à struct: freq_path, freq_mhz
+- Leitura e conversão kHz → MHz em read_cpu_data()
+- Liberação de freq_path em cpu_plugin_free()
+- Detecção do caminho da frequência em cpu_plugin_construct()
+
+[GPU Plugin] — 2026-05-15
+------------------------------------------------------------
+- Ícone indicator-sensors-gpu (Papirus) ao lado do texto
+- Layout com GtkBox (ícone + label)
+- Fonte padrão do painel (removido font_desc="Monospace")
+- Intervalo de atualização reduzido para 900ms
+- Cores nos valores via Pango markup:
+  • Uso GPU: verde ≤60%, amarelo 61-89%, vermelho ≥90%
+  • Temperatura: verde ≤54°C, amarelo 55-74°C, vermelho ≥75°C
+- Tooltip exibe clocks em GHz (ex: 1.1 GHz)
+- Exibição compacta: "GPU: 63% | 54°C"
+- Tooltip detalhado: vendor, VRAM, clocks, temperatura
+- Dados de VRAM e clocks removidos do label principal
+- Correção: strtol() para parse de vendor hex (0x1002)
+- Correção: X-XFCE-Module sem prefixo "lib"
+- Correção: grupo [Xfce Panel] no .desktop
+- Suporte a orientação vertical/horizontal do painel
+
+[CPU Plugin] — 2026-05-15 (inicial)
+------------------------------------------------------------
+- Criação do plugin de monitoramento de CPU
+- Uso CPU via /proc/stat (diff entre leituras consecutivas)
+- Temperatura via hwmon (coretemp, k10temp, zenpower)
+- Ícone indicator-sensors-cpu (Papirus)
+- Display: "CPU: 12% | 40°C" com cores
+- Tooltip: uso, temperatura
+- Atualização a cada 900ms
+
+[GPU Plugin] — 2026-05-15 (inicial)
+------------------------------------------------------------
+- Criação do plugin de monitoramento de GPU
+- Suporte a AMDGPU (sysfs) e NVIDIA (nvidia-smi)
+- Leitura de: gpu_busy_percent, mem_info_vram_*, freq1/2_input, temp1_input
+- Display: "GPU: 63% | 54°C"
+- Tooltip: vendor, VRAM, clocks, temperatura
